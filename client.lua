@@ -14,10 +14,10 @@ end)
 
 AddEventHandler('ox_testburger', function(data, slot)
     print(json.encode(slot, {indent=true}))
-    TriggerEvent('ox_inventory:item', data, function(data)
+    ox_inventory:useItem(data, function(data)
 		if data then
 			print(json.encode(data, {indent=true}))
-			TriggerEvent('ox_inventory:notify', {text = 'You ate a delicious '..data.name})
+			ox_inventory:notify({text = 'You ate a delicious '..data.name})
 		end
 	end)
 end)
