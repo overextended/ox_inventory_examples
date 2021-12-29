@@ -12,7 +12,7 @@ RegisterCommand('personalstash', function()
     ox_inventory:openInventory('stash', 'example_stash_3')
 end)
 
-AddEventHandler('ox_testburger', function(data, slot)
+exports('testburger', function(data, slot)
     print(json.encode(slot, {indent=true}))
     ox_inventory:useItem(data, function(data)
 		if data then
