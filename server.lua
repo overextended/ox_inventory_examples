@@ -1,3 +1,4 @@
+local GetCurrentResourceName = GetCurrentResourceName()
 local ox_inventory = exports.ox_inventory
 
 local stashes = {
@@ -28,16 +29,8 @@ local stashes = {
 	}
 }
 
-if GetResourceState('ox_inventory') == 'started' then
-	for i=1, #stashes do
-		local stash = stashes[i]
-		ox_inventory:RegisterStash(stash.id, stash.label, stash.slots, stash.weight, stash.owner, stash.jobs)
-	end
-end
-
 AddEventHandler('onServerResourceStart', function(resourceName)
-	if resourceName == 'ox_inventory' then
-		Wait(0)
+	if resourceName == 'ox_inventory' or resourceName == GetCurrentResourceName then
 		for i=1, #stashes do
 			local stash = stashes[i]
 			ox_inventory:RegisterStash(stash.id, stash.label, stash.slots, stash.weight, stash.owner, stash.jobs)
