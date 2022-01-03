@@ -5,11 +5,14 @@ RegisterCommand('policestash', function()
 end)
 
 RegisterCommand('ownedstash', function()
-    ox_inventory:openInventory('stash', 'example_stash_2')
+    ox_inventory:openInventory('stash', {id='example_stash_2', owner='bobsmith'})
 end)
 
-RegisterCommand('personalstash', function()
-    ox_inventory:openInventory('stash', 'example_stash_3')
+RegisterCommand('lazystash', function()
+    if ox_inventory:openInventory('stash', 'lazyStash') == false then
+        TriggerServerEvent('ox:lazyStash')
+        ox_inventory:openInventory('stash', 'lazyStash')
+    end
 end)
 
 exports('testburger', function(data, slot)

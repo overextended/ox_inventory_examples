@@ -1,6 +1,7 @@
 local GetCurrentResourceName = GetCurrentResourceName()
 local ox_inventory = exports.ox_inventory
 
+-- These stashes are all created on resource start
 local stashes = {
 	{
 		-- Police stash
@@ -14,19 +15,11 @@ local stashes = {
 	{
 		-- Owned stash
 		id = 'example_stash_2',
-		label = 'Bob Smith\'s Stash',
+		label = 'Stash',
 		slots = 50,
 		weight = 100000,
 		owner = 'bobsmith',
 	},
-	{
-		-- Personal stash
-		id = 'example_stash_3',
-		label = 'Your Stash',
-		slots = 50,
-		weight = 100000,
-		owner = true,
-	}
 }
 
 AddEventHandler('onServerResourceStart', function(resourceName)
@@ -36,4 +29,9 @@ AddEventHandler('onServerResourceStart', function(resourceName)
 			ox_inventory:RegisterStash(stash.id, stash.label, stash.slots, stash.weight, stash.owner, stash.jobs)
 		end
 	end
+end)
+
+-- Register this stash only when this event is called
+RegisterNetEvent('ox:lazyStash', function()
+	ox_inventory:RegisterStash('lazyStash', 'Stash', 20, 20000, true)
 end)
