@@ -35,3 +35,20 @@ end)
 RegisterNetEvent('ox:lazyStash', function()
 	ox_inventory:RegisterStash('lazyStash', 'Stash', 20, 20000, true)
 end)
+
+exports('testburger', function(event, item, inventory, slot, data)
+	if event == 'usingItem' then
+		if ox_inventory:GetItem(inventory, item, inventory.items[slot].metadata, true) > 0 then
+			-- if we return false here, we can cancel item use
+			return {
+				inventory.label, event, 'external item use poggies'
+			}
+		end
+
+	elseif event == 'usedItem' then
+		print(('%s just ate a %s from slot %s'):format(inventory.label, item.label, slot))
+
+	elseif event == 'buying' then
+		print(data.id, data.coords, json.encode(data.items[slot], {indent=true}))
+	end
+end)

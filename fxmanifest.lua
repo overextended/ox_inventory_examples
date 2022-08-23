@@ -17,7 +17,7 @@ dependencies {
 }
 
 shared_scripts {
-	'@pe-lualib/init.lua'
+	'@ox_lib/init.lua'
 }
 
 server_scripts {
