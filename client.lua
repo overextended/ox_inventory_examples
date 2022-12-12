@@ -5,7 +5,11 @@ RegisterCommand('policestash', function()
 end)
 
 RegisterCommand('ownedstash', function()
-    ox_inventory:openInventory('stash', {id='example_stash_2', owner='bobsmith'})
+    ox_inventory:openInventory('stash', {id='example_stash_2', owner=1})
+end)
+
+RegisterCommand('pstash', function(src, args)
+    ox_inventory:openInventory('stash', {id='example_stash_3', owner=tonumber(args[1]) or 1})
 end)
 
 RegisterCommand('lazystash', function()

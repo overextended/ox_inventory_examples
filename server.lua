@@ -20,6 +20,14 @@ local stashes = {
 		weight = 100000,
 		owner = 'bobsmith',
 	},
+	{
+		-- Personal stashes
+		id = 'example_stash_3',
+		label = 'Stash',
+		slots = 50,
+		weight = 100000,
+		owner = true,
+	},
 }
 
 AddEventHandler('onServerResourceStart', function(resourceName)
@@ -29,6 +37,11 @@ AddEventHandler('onServerResourceStart', function(resourceName)
 			ox_inventory:RegisterStash(stash.id, stash.label, stash.slots, stash.weight, stash.owner, stash.jobs)
 		end
 	end
+
+	Wait(500)
+
+	local inventory = ox_inventory:GetInventory({id = 'example_stash_3', owner = 115})
+	ox_inventory:AddItem(inventory.id, 'water', 1)
 end)
 
 -- Register this stash only when this event is called
